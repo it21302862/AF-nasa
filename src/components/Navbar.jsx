@@ -37,7 +37,7 @@ const Navbar = () => {
         ) : (
           <Link
             to="/sign-in"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-black border border-white hover:bg-white hover:text-black font-semibold text-white py-2 px-6 rounded-full"
           >
             Sign In with Google
           </Link>

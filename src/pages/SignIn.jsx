@@ -26,9 +26,15 @@ const SignIn = () => {
     , [user]);
     
     return (
-        <div>
-            <h1>Sign In</h1>
-            <GoogleButton onClick={handleGoogleSignIn}>Sign In with Google</GoogleButton>
+
+        
+        <div className='w-[100dvh] h-[90vh] flex items-center justify-center'>
+            <button
+        onClick={handleGoogleSignIn}
+        className="bg-black border border-white hover:bg-white hover:text-black font-semibold text-white py-2 px-6 rounded-full"
+      >
+        Log in with Google
+      </button>
         </div>
     );
 };
