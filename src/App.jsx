@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import { AuthContextProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Protected from './pages/Protected';
+import ParticlesComponent from './components/Background';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={ <Protected><Home /></Protected>} />
           <Route path="/sign-in" element={<SignIn />} />
         </Routes>
+        <ParticlesComponent id = "particles"></ParticlesComponent>
       </BrowserRouter>
       </AuthContextProvider>
     </div>

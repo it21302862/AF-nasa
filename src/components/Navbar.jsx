@@ -13,22 +13,23 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between p-4 md:p-8">
+    <div className="flex flex-row justify-between p-4 md:p-4">
       <div className=""></div>
       <div className="">
         {user?.displayName ? (
-          <div className="">
-            <div className="flex flex-row gap-5">
-              <h1 className="text-2xl">Welcome, {user.displayName}!</h1>
-              <img
+          <div className="flex flex-row gap-3">
+            <div className="flex flex-row items-center gap-3 bg-black border border-white p-2 pr-5 rounded-full">
+            <img
                 src={user.photoURL}
                 alt="User"
                 className="w-10 h-10 rounded-full"
               />
+              <h1 className="text-md">Welcome, {user.displayName}!</h1>
+             
             </div>
             <button
               onClick={handleSignOut}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-black border border-white hover:bg-white hover:text-black font-semibold text-white py-2 px-6 rounded-full"
             >
               Sign Out
             </button>
