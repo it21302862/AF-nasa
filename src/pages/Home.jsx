@@ -1,14 +1,34 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import ModalImage from "react-modal-image";
+import axios from 'axios';
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const [apodData, setApodData] = useState([]);
+  const [currentDate, setCurrentDate] = useState('');
+  const apiKey = 'yJZPuN2nvNQGZCf4SD7HMM6XhUdl1ZwNXBTrXD2P'
   const [activeRover, setActiveRover] = useState(1);
   const handleSeeMoreClick = () => {
     navigate(`/nasa-homepage`);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const currentDate = new Date().toISOString().split('T')[0];
+        setCurrentDate(currentDate); // Generate current date
+        let apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${currentDate}`;
+        const response = await axios.get(apiUrl);
+        setApodData([response.data]);
+      } catch (error) {
+        console.error("Error fetching APOD data:", error);
+        setApodData([]);
+      }
+    };
+
+    fetchData();
+  }, [apiKey]);
 
   const toggleRoverDetails = (roverId) => {
     setActiveRover(roverId === activeRover ? null : roverId);
@@ -19,15 +39,17 @@ const Home = () => {
       <div className="p-2 xl:p-4">
         <div className="grid lg:grid-cols-2 rounded-[20px] min-h-[80vh] w-full bg-black bg-opacity-[80%] border border-gray-500 gap-8">
           <div className="h-full w-full">
-            <ModalImage
-              small="https://apod.nasa.gov/apod/image/2404/GKPerWide_DSC_960.jpg"
-              large="https://apod.nasa.gov/apod/image/2404/GKPerWide_DSC_960.jpg"
-              alt="Title goes here"
-              hideDownload={true}
-              hideZoom={false}
-              hideRotate={false}
-              className="rounded-t-[20px] lg:rounded-l-[20px] lg:rounded-r-[0px] w-full h-full lg:h-[80vh] object-cover"
-            />
+            {apodData.length > 0 && (
+              <ModalImage
+                small={apodData[0].url}
+                large={apodData[0].hdurl}
+                alt={apodData[0].title}
+                hideDownload={true}
+                hideZoom={false}
+                hideRotate={false}
+                className="rounded-t-[20px] lg:rounded-l-[20px] lg:rounded-r-[0px] w-full h-full lg:h-[80vh] object-cover"
+              />
+            )}
           </div>
           <div className="h-full w-full flex flex-row items-center xl:pl-16 xl:pr-24 relative lg:py-8 p-2 py-4">
             <div class="hidden xl:flex absolute top-[50%] right-0 -rotate-90">
@@ -36,35 +58,20 @@ const Home = () => {
 
             <div className="flex flex-col gap-5 justify-start items-start">
               <div className="text-white text-md uppercase">
-                Picture of the day
+                 Astronomy Picture of the day
               </div>
               <div className="text-white text-[40px] text-start">
-                Title of the Picture
+              {apodData.length > 0 && apodData[0].title}
               </div>
               <div className="flex flex-row gap-3 items-center">
-                <div className="text-[14px]">2024-04-23</div>
+                <div className="text-[14px]">{currentDate}</div>
                 <div className="">
                   <div className="w-[6px] h-[5px] bg-white rounded-full"></div>
                 </div>
                 <div className="text-[14px]">Deep Sky Collective</div>
               </div>
               <div className="text-start text-[16px]">
-                The star system GK Per is known to be associated with only two
-                of the three nebulas pictured. At 1500 light years distant, Nova
-                Persei 1901 (GK Persei) was the second closest nova yet
-                recorded. At the very center is a white dwarf star, the
-                surviving core of a former Sun-like star. It is surrounded by
-                the circular Firework nebula, gas that was ejected by a
-                thermonuclear explosion on the white dwarf's surface -- a nova
-                -- as recorded in 1901. The red glowing gas surrounding the
-                Firework nebula is the atmosphere that used to surround the
-                central star. This gas was expelled before the nova and appears
-                as a diffuse planetary nebula. The faint gray gas running across
-                is interstellar cirrus that seems to be just passing through
-                coincidently. In 1901, GK Per's nova became brighter than
-                Betelgeuse. Similarly, star system T CrB is expected to erupt in
-                a nova later this year, but we don't know exactly when nor how
-                bright it will become.
+              {apodData.length > 0 && apodData[0].explanation}
               </div>
               <div class="xl:hidden">
                 <span class="text">View Past Days</span>
