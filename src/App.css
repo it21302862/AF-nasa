@@ -1,7 +1,14 @@
+
+
 #root {
   max-width: 1900px;
   margin: 0 auto;
-  text-align: center;
+}
+
+.container {
+max-width: 1280px !important; 
+padding: 0 4px 0 4px;
+margin: 0 auto;
 }
 
 .logo {
@@ -15,6 +22,24 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* Home styles */
+
+.hover-box {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  width: 300px; /* Adjust width as needed */
+  height: 3px; /* Adjust height as needed */
+  display: none;
+  border: 1px solid #ccc; /* Add border style */
+  z-index: 1; /* Ensure it's above other content */
+}
+
+.text:hover + .hover-box {
+  display: block;
 }
 
 @keyframes logo-spin {
