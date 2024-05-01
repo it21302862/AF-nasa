@@ -20,7 +20,7 @@ const SignIn = () => {
     useEffect(() => {
         // Redirecting to home page if user is already signed in
         if (user != null) {
-            navigate('/');
+            navigate('/nasa-homepage');
         }
     }
     , [user]);

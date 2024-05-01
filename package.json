@@ -1,5 +1,5 @@
 {
-  "name": "se3040-assignment02-it21251900",
+  "name": "se3040-assignment02-it21302862",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
     "@tsparticles/all": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
+    "axios": "^1.6.8",
     "firebase": "^10.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
+    "react-modal-image": "^2.6.0",
     "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
@@ -23,7 +28,6 @@
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
